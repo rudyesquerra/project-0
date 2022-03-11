@@ -20,6 +20,7 @@ object TestRepository {
 
     System.out.println("**************************************************")
     cr.getAll().foreach(println)
+    //println(cr.getById(1))
     //cr.getAll.forEach(System.out.println)
     //cr.getLikeTitulo("ja").forEach(System.out::println);*/
   }

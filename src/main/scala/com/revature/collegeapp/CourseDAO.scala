@@ -3,7 +3,8 @@ import java.sql.{Connection, PreparedStatement, ResultSet, Statement}
 import java.util.List
 
 import com.fasterxml.jackson.annotation.JsonFormat.Value
-
+import com.revature.collegeapp.DoWeek.DoWeek
+import com.revature.collegeapp.Shift.Shift
 
 import scala.collection.mutable.ArrayBuffer
 
@@ -42,8 +43,8 @@ import scala.collection.mutable.ArrayBuffer
 
     override def remove(course: Course): Unit = {
       if(course == null) return
-      var st:Statement = conn.createStatement()
-      var query:String = "delete from courses where id=" + course.getId()
+      val st:Statement = conn.createStatement()
+      val query:String = "delete from courses where id=" + course.getId()
       try{
         st.execute(query)
       } catch {
@@ -55,15 +56,15 @@ import scala.collection.mutable.ArrayBuffer
     override def update(course: Course): Unit = ???
 
     override def getAll(): scala.List[Course] = {
-      val array = ArrayBuffer[Course]()
+      var array = ArrayBuffer[Course]()
       val rs = conn.createStatement.executeQuery("select * from courses")
       try {
         while (rs.next) {
           array.append(Course(
-            //rs.getInt("id"),
+            rs.getInt("id"),
             rs.getString("courseName"),
             rs.getString("professor"),
-            DoWeek.withName(rs.getString("doWeek")), //Can't use ValueOf method...
+            DoWeek.withName(rs.getString("doWeek")),
             Shift.withName(rs.getString("shift"))
           ))
         }
@@ -76,15 +77,15 @@ import scala.collection.mutable.ArrayBuffer
     }
 
     override def getById(id: Int): Course = {
-       //var course:Course = _
+      val curso:Course = null
       val rs = conn.createStatement.executeQuery("select * from courses where id="+id)
       try {
         if (rs.next) {
             Course(
-            //rs.getInt("id"),
+            rs.getInt("id"),
             rs.getString("courseName"),
             rs.getString("professor"),
-            DoWeek.withName(rs.getString("doWeek")), //Can't use ValueOf method...
+            DoWeek.withName(rs.getString("doWeek")),
             Shift.withName(rs.getString("shift"))
           )
         }
@@ -93,7 +94,7 @@ import scala.collection.mutable.ArrayBuffer
         case e: Exception =>
           e.printStackTrace()
       }
-      course
+      curso
     }
 
     override def getLikeCourse: Unit = ???

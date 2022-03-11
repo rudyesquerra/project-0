@@ -4,16 +4,14 @@ import com.revature.collegeapp.DoWeek.DoWeek
 import com.revature.collegeapp.Shift.Shift
 
 case class Course(courseName:String, professor:String, doWeek: DoWeek, shift: Shift) {
- var id:Int = _;
- /*
-
-  var courseName:String = _;
+  var id:Int = _;
+  /*var courseName:String = _;
   var professor:String = _;
   var doWeek: DoWeek = _;
-  var shift: Shift = _;
+  var shift: Shift = _;*/
 
 
-  def this(id:Int) = {
+/*  def this(id:Int) = {
    this
   }
 
@@ -29,11 +27,10 @@ case class Course(courseName:String, professor:String, doWeek: DoWeek, shift: Sh
   }
 
 
+  def this(id:Int, courseName:String, professor:String, doWeek: DoWeek, shift: Shift) {
+   this
+  }*/
 
-  def this(id:Int, courseName:String, professor:String, doWeek: DoWeek, shift: Shift) = {
-    this
-    }
-*/
 
 
 
@@ -59,3 +56,16 @@ def getId() = this.id
 }
 
 
+object Course {
+
+
+ def apply(
+  id:Int,
+  courseName:String,
+  professor:String,
+  doWeek: DoWeek,
+  shift: Shift
+          ):Course = {
+   Course(id:Int, courseName:String, professor:String, doWeek: DoWeek, shift: Shift)
+ }
+}
