@@ -1,9 +1,8 @@
 package com.revature.collegeapp.entities
 
-case class Student() {
+case class Student(firstName:String, lastName:String, age:Int, courseId:Int) {
   var studentId: Int = _;
-  var firstName: String = _;
-  var lastName: String = _;
-  var age: Int = _;
-  var courseId: Int = _;
+
+  def setStudentId(value:Int) = {this.studentId = value}
+  def geStudentId() = this.studentId
 }
