@@ -1,4 +1,4 @@
-package com.revature.collegeapp
+package com.revature.collegeapp.enums
 
 object DoWeek extends Enumeration {
   type DoWeek = Value

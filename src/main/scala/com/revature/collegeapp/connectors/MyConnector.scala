@@ -1,4 +1,4 @@
-package com.revature.collegeapp
+package com.revature.collegeapp.connectors
 
 import java.sql.{Connection, DriverManager, SQLException}
 
@@ -18,13 +18,13 @@ object MyConnector {
       if (conn == null || conn.isClosed()) {
         Class.forName(driver) //Register the driver because mysql class implement the Driver Interface
         conn = DriverManager.getConnection(url, username, password) //Returns the connection
-    /*    val resultSet = conn.createStatement().executeQuery("select * from courses;")
+        /*    val resultSet = conn.createStatement().executeQuery("select * from courses;")
         while (resultSet.next()) {
           println(resultSet.getString(1) + ", " + resultSet.getString(2) + ", " + resultSet.getString(3) + ", " + resultSet.getString(4))
         }*/
       }
-      }
-     catch {
+    }
+    catch {
       case e: Exception => println("exception caught inside the method: " + e);
       case e: SQLException => println("Conection problem" + e);
       case e: ClassNotFoundException => println("Couldn't find driver" + e)
@@ -33,8 +33,7 @@ object MyConnector {
     return conn
     //conn.close()
   }
+
   //getConnection()
   //println(conn)
 }
-
-

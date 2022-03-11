@@ -1,4 +1,4 @@
-package com.revature.collegeapp
+package com.revature.collegeapp.enums
 
 object Shift extends Enumeration {
   type Shift = Value
