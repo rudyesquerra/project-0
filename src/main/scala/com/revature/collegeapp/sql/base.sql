@@ -17,7 +17,19 @@ create table students(
     age int,
     courseId int not null
 );
+
+create table professors(
+    professorId int auto_increment primary key,
+    firstName varchar(25) not null,
+    lastName varchar(25) not null,
+    courseId int not null
+);
 alter table students
     add constraint FK_students_courseId
+    foreign key(courseId)
+    references courses(id);
+
+alter table professors
+    add constraint FK_professors_courseId
     foreign key(courseId)
     references courses(id);

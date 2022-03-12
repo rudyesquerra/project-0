@@ -10,7 +10,7 @@ case class StudentDAO(conn: Connection) extends T_StudentDAO {
   override def save(student: Student): Unit = {
     if (student == null) return
 
-    val ps: PreparedStatement = conn.prepareStatement("insert into students (firstName,lastName,age,studentId) values (?,?,?,?)", Statement.RETURN_GENERATED_KEYS)
+    val ps: PreparedStatement = conn.prepareStatement("insert into students (firstName,lastName,age,courseId) values (?,?,?,?)", Statement.RETURN_GENERATED_KEYS)
 
     try {
       ps.setString(1, student.firstName) //Validates that these are secure coding sequences - validates security - we delegate security on Java
