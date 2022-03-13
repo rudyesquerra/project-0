@@ -1,9 +1,13 @@
 package com.revature.collegeapp.test
 
+import java.sql.{SQLException, SQLIntegrityConstraintViolationException}
+
 import com.revature.collegeapp.connectors.MyConnector
 import com.revature.collegeapp.entities.{Course, Professor, Student}
 import com.revature.collegeapp.enums.{DoWeek, Shift}
 import com.revature.collegeapp.repositories.{CourseDAO, ProfessorDAO, StudentDAO, T_CourseDAO, T_ProfessorDAO, T_StudentDAO}
+
+import scala.io.StdIn._
 
 object TestRepository {
   def main(args: Array[String]): Unit = {
@@ -53,7 +57,7 @@ object TestRepository {
 
     //System.out.println("*********************PROFESSORS*****************************")
 
-/*    val professor = new Professor("Carlos", "Rios", 2)
+  /*  val professor = new Professor("Carlos", "Rios", 6)
     pr.save(professor)
     println(professor)*/
 
@@ -73,5 +77,276 @@ object TestRepository {
     //    println(pr.getById(4))
     //    println(pr.getById(4).length)
     //    println(pr.getById(4)(1))
+
+
+    println("Welcome to the college app \nWhat do you wish to do? Enter 1 to CREATE, 2 to REMOVE, 3 to UPDATE, 4 to DELETE")
+    while(true) {
+      try {
+        print("Enter your option (1,2,3 or 4): ")
+        val input1 = readInt()
+        input1 match {
+          case 1 =>
+            while(true) {
+              try {
+                print("Type s to create a STUDENT, p for PROFESSOR or c for COURSE: ")
+                val inputType = readLine()
+                inputType match {
+                  case "s" =>
+                    print("Enter the sudent first name: ")
+                    val firstName = readLine()
+                    print("Enter the sudent last name: ")
+                    val lastName = readLine()
+                    print("Enter the sudent age: ")
+                    val studentAge = readInt()
+                    print("Enter the course number: ")
+                    val courseNumber = readInt()
+                    val student = new Student(s"$firstName", s"$lastName", studentAge, courseNumber)
+                    sr.save(student)
+                    println("The student was saved succesfully")
+                    return
+                  case "p" =>
+                    print("Enter the professor first name: ")
+                    val firstName = readLine()
+                    print("Enter the professor last name: ")
+                    val lastName = readLine()
+                    print("Enter the professor course number: ")
+                    val courseNumber = readInt()
+                    val professor = new Professor(s"$firstName", s"$lastName", courseNumber)
+                    pr.save(professor)
+                    println("The professor was saved succesfully")
+                    return
+                  case "c" =>
+                    while(true){
+                      try {
+                        print("Enter the course name: ")
+                        val courseName = readLine()
+                        print("Enter the professor last name: ")
+                        val lastName = readLine()
+                        print("Enter the day of the week: ")
+                        var doWeek = readLine().toLowerCase()
+                        doWeek match {
+                          case "monday" =>
+                            while(true) {
+                              var doWeek = DoWeek.Monday
+                              print("Enter the shift: ")
+                              var shift = readLine().toLowerCase()
+                              shift match {
+                                case "morning" =>
+                                  var shift = Shift.Morning
+                                  val course = new Course(s"$courseName", s"$lastName", doWeek, shift)
+                                  cr.save(course)
+                                  println("The course was saved succesfully")
+                                  return
+                                case "evening" =>
+                                  var shift = Shift.Evening
+                                  val course = new Course(s"$courseName", s"$lastName", doWeek, shift)
+                                  cr.save(course)
+                                  println("The course was saved succesfully")
+                                  return
+                                case "night" =>
+                                  var shift = Shift.Night
+                                  val course = new Course(s"$courseName", s"$lastName", doWeek, shift)
+                                  cr.save(course)
+                                  println("The course was saved succesfully")
+                                  return
+                                case _ => println("Not an option, please enter morning, evening or night")
+                              }
+                            }
+                          case "tuesday" =>
+                            while(true) {
+                              var doWeek = DoWeek.Tuesday
+                              print("Enter the shift: ")
+                              var shift = readLine().toLowerCase()
+                              shift match {
+                                case "morning" =>
+                                  var shift = Shift.Morning
+                                  val course = new Course(s"$courseName", s"$lastName", doWeek, shift)
+                                  cr.save(course)
+                                  println("The course was saved succesfully")
+                                  return
+                                case "evening" =>
+                                  var shift = Shift.Evening
+                                  val course = new Course(s"$courseName", s"$lastName", doWeek, shift)
+                                  cr.save(course)
+                                  println("The course was saved succesfully")
+                                  return
+                                case "night" =>
+                                  var shift = Shift.Night
+                                  val course = new Course(s"$courseName", s"$lastName", doWeek, shift)
+                                  cr.save(course)
+                                  println("The course was saved succesfully")
+                                  return
+                                case _ => println("Not an option, please enter morning, evening or night")
+                              }
+                            }
+                          case "wednesday" =>
+                            while(true) {
+                              var doWeek = DoWeek.Wednesday
+                              print("Enter the shift: ")
+                              var shift = readLine().toLowerCase()
+                              shift match {
+                                case "morning" =>
+                                  var shift = Shift.Morning
+                                  val course = new Course(s"$courseName", s"$lastName", doWeek, shift)
+                                  cr.save(course)
+                                  println("The course was saved succesfully")
+                                  return
+                                case "evening" =>
+                                  var shift = Shift.Evening
+                                  val course = new Course(s"$courseName", s"$lastName", doWeek, shift)
+                                  cr.save(course)
+                                  println("The course was saved succesfully")
+                                  return
+                                case "night" =>
+                                  var shift = Shift.Night
+                                  val course = new Course(s"$courseName", s"$lastName", doWeek, shift)
+                                  cr.save(course)
+                                  println("The course was saved succesfully")
+                                  return
+                                case _ => println("Not an option, please enter morning, evening or night")
+                              }
+                            }
+                          case "thursday" =>
+                            while(true) {
+                              var doWeek = DoWeek.Thursday
+                              print("Enter the shift: ")
+                              var shift = readLine().toLowerCase()
+                              shift match {
+                                case "morning" =>
+                                  var shift = Shift.Morning
+                                  val course = new Course(s"$courseName", s"$lastName", doWeek, shift)
+                                  cr.save(course)
+                                  println("The course was saved succesfully")
+                                  return
+                                case "evening" =>
+                                  var shift = Shift.Evening
+                                  val course = new Course(s"$courseName", s"$lastName", doWeek, shift)
+                                  cr.save(course)
+                                  println("The course was saved succesfully")
+                                  return
+                                case "night" =>
+                                  var shift = Shift.Night
+                                  val course = new Course(s"$courseName", s"$lastName", doWeek, shift)
+                                  cr.save(course)
+                                  println("The course was saved succesfully")
+                                  return
+                                case _ => println("Not an option, please enter morning, evening or night")
+                              }
+                            }
+                          case "friday" =>
+                            while(true) {
+                              var doWeek = DoWeek.Friday
+                              print("Enter the shift: ")
+                              var shift = readLine().toLowerCase()
+                              shift match {
+                                case "morning" =>
+                                  var shift = Shift.Morning
+                                  val course = new Course(s"$courseName", s"$lastName", doWeek, shift)
+                                  cr.save(course)
+                                  println("The course was saved succesfully")
+                                  return
+                                case "evening" =>
+                                  var shift = Shift.Evening
+                                  val course = new Course(s"$courseName", s"$lastName", doWeek, shift)
+                                  cr.save(course)
+                                  println("The course was saved succesfully")
+                                  return
+                                case "night" =>
+                                  var shift = Shift.Night
+                                  val course = new Course(s"$courseName", s"$lastName", doWeek, shift)
+                                  cr.save(course)
+                                  println("The course was saved succesfully")
+                                  return
+                                case _ => println("Not an option, please enter morning, evening or night")
+                              }
+                            }
+                          case "saturday" =>
+                            while(true) {
+                              var doWeek = DoWeek.Saturday
+                              print("Enter the shift: ")
+                              var shift = readLine().toLowerCase()
+                              shift match {
+                                case "morning" =>
+                                  var shift = Shift.Morning
+                                  val course = new Course(s"$courseName", s"$lastName", doWeek, shift)
+                                  cr.save(course)
+                                  println("The course was saved succesfully")
+                                  return
+                                case "evening" =>
+                                  var shift = Shift.Evening
+                                  val course = new Course(s"$courseName", s"$lastName", doWeek, shift)
+                                  cr.save(course)
+                                  println("The course was saved succesfully")
+                                  return
+                                case "night" =>
+                                  var shift = Shift.Night
+                                  val course = new Course(s"$courseName", s"$lastName", doWeek, shift)
+                                  cr.save(course)
+                                  println("The course was saved succesfully")
+                                  return
+                                case _ => println("Not an option, please enter morning, evening or night")
+                              }
+                            }
+                          case _ => println("Not a valid option, enter enter Monday thru Saturday...")
+                        }
+                      }
+                      catch {
+                        case e: Exception => println("Not a valid option" + e);
+                      }
+                    }
+                    return
+                }
+              }
+              catch {
+                case e: Exception => println("Not a valid option choose s, p or c " + e);
+              }
+            }
+          case 2 =>
+            while(true) {
+              try {
+                print("Type s to remove a STUDENT, p for PROFESSOR or c for COURSE: ")
+                val inputType = readLine()
+                inputType match {
+                  case "s" =>
+                    print("Enter the student id: ")
+                    var studentId= readInt()
+                    sr.remove(sr.getById(studentId))
+                    println("Student removed succesfully")
+                    return
+                  case "p" =>
+                    print("Enter the professor id: ")
+                    var professorId= readInt()
+                    pr.remove(pr.getById(professorId))
+                    println("Professor removed succesfully")
+                    return
+                  case "c" =>
+                    print("Enter the course id: ")
+                    var courseId= readInt()
+                    cr.remove(cr.getById(courseId))
+                    println("Course removed succesfully")
+                    return
+                  case _ => println("Not a valid option, enter enter \"s\" for student, \"p\" for professor or \"c\" for course...")
+                        }
+                      }
+              catch {
+                case e: Exception => println("Not a valid option" + e);
+              }
+          }
+          case 3 => println(s"Case $input1")
+          case 4 => println(s"Case $input1")
+          case _ => println(s"Invalid input")
+        }
+      } catch {
+        case e: Exception => println("Not a valid option " + e);
+      }
+    }
+
+
+   /* while(input1 != "exit" ){
+
+    }*/
+
+
+
   }
 }

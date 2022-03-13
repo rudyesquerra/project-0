@@ -1,7 +1,8 @@
 package com.revature.collegeapp.repositories
-import java.sql.{Connection, PreparedStatement, ResultSet, Statement}
+import java.sql.{Connection, PreparedStatement, ResultSet, SQLException, SQLIntegrityConstraintViolationException, Statement}
 
-import com.revature.collegeapp.entities.{Professor}
+import com.mysql.cj.jdbc.exceptions.{SQLError, SQLExceptionsMapping}
+import com.revature.collegeapp.entities.Professor
 
 import scala.collection.mutable.ArrayBuffer
 
@@ -22,8 +23,8 @@ case class ProfessorDAO(conn: Connection) extends T_ProfessorDAO {
         professor.setProfessorId(rs.getInt(1))
       }
     } catch {
-      case e: Exception =>
-        e.printStackTrace()
+      case e: SQLIntegrityConstraintViolationException  => println("Course does not exists, please check and try again..." + e);
+      case e: Exception => e.printStackTrace()
     }
   }
 
