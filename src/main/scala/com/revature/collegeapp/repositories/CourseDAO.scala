@@ -52,7 +52,7 @@ case class CourseDAO(conn: Connection) extends T_CourseDAO {
   override def update(course: scala.List[String]): Unit = {
     if (course == null) return
 
-      val ps = conn.prepareStatement("update students set firstname=?, lastname=?, age=?, courseid=? where studentid=?")
+      val ps = conn.prepareStatement("update courses set courseName=?, professor=?, doWeek=?, shift=? where id=?")
       try {
         ps.setString(1, course(1))
         ps.setString(2, course(2))

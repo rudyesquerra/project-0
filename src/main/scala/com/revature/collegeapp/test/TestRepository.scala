@@ -24,12 +24,14 @@ object TestRepository {
    //cr.remove(cr.getById(4))
 
 
-   /*     var course:List[String] = cr.getById(5)
+   /*
+        var course:List[String] = cr.getById(5)
 
         if (course != null && course(0) != 0) {
           var newCourse:List[String] = course.updated(2,"Pereyra")
           cr.update(newCourse)
-        }*/
+        }
+        */
 
 
     //    cr.getAll().foreach(println)
@@ -64,12 +66,7 @@ object TestRepository {
 //    pr.remove(pr.getById(5))
 
 
- /*        var professor:List[String] = pr.getById(6)
 
-         if (professor != null && professor(0) != 0) {
-           var newProfessor:List[String] = professor.updated(2,"Pereyra")
-           pr.update(newProfessor)
-         }*/
 
 
     //    pr.getAll().foreach(println)
@@ -79,7 +76,7 @@ object TestRepository {
     //    println(pr.getById(4)(1))
 
 
-    println("Welcome to the college app \nWhat do you wish to do? Enter 1 to CREATE, 2 to REMOVE, 3 to UPDATE, 4 to DELETE")
+    println("Welcome to the college app \nWhat do you wish to do? Enter 1 to CREATE, 2 to READ, 3 to UPDATE, 4 to DELETE")
     while(true) {
       try {
         print("Enter your option (1,2,3 or 4): ")
@@ -304,7 +301,88 @@ object TestRepository {
           case 2 =>
             while(true) {
               try {
-                print("Type s to remove a STUDENT, p for PROFESSOR or c for COURSE: ")
+                print("Type s to consult a STUDENT, p for PROFESSOR or c for COURSE: ")
+                val inputType = readLine()
+                inputType match {
+                  case "s" =>
+                    print("Enter the student id: ")
+                    var studentId= readInt()
+                    print("The student name is ")
+                    print(sr.getById(studentId)(1)+ " ")
+                    print(sr.getById(studentId)(2)+ " ")
+                    return
+                  case "p" =>
+                    print("Enter the professor id: ")
+                    var professorId= readInt()
+                    print("The professor name is ")
+                    print(pr.getById(professorId)(1)+ " ")
+                    print(pr.getById(professorId)(2)+ " ")
+                    return
+                  case "c" =>
+                    print("Enter the course id: ")
+                    var courseId= readInt()
+                    println("The course information is ")
+                    cr.getById(courseId).foreach(println)
+                    return
+                  case _ => println("Not a valid option, enter enter \"s\" for student, \"p\" for professor or \"c\" for course...")
+                }
+              }
+              catch {
+                case e: Exception => println("Not a valid option" + e);
+              }
+            }
+          case 3 => while(true) {
+            try {
+              print("Type s to update a STUDENT, p for PROFESSOR or c for COURSE: ")
+              val inputType = readLine()
+              inputType match {
+                case "s" =>
+                  print("Enter the student id: ")
+                  val studentId = readInt()
+                  print("Enter student updated last name: ")
+                  val updatedLastName = readLine()
+                  val student: List[String] = sr.getById(studentId)
+                  if (student != null && student(0) != 0) {
+                    val updatedStudent: List[String] = student.updated(2, updatedLastName)
+                    sr.update(updatedStudent)
+                    println("Student updated succesfully")
+                  }
+                  return
+                case "p" =>
+                  print("Enter the professor id: ")
+                  val professorId = readInt()
+                  print("Enter professor updated last name: ")
+                  val updatedLastName = readLine()
+                  val professor: List[String] = pr.getById(professorId)
+                  if (professor != null && professor(0) != 0) {
+                    val updatedProfessor: List[String] = professor.updated(2, updatedLastName)
+                    pr.update(updatedProfessor)
+                    println("Professor updated succesfully")
+                  }
+                  return
+                case "c" =>
+                  print("Enter the course id: ")
+                  val courseId = readInt()
+                  print("Enter course updated name: ")
+                  val updatedCourseName = readLine()
+                  val course: List[String] = cr.getById(courseId)
+                  if (course != null && course(0) != 0) {
+                    val updatedCourse: List[String] = course.updated(1, updatedCourseName)
+                    cr.update(updatedCourse)
+                    println("Course updated succesfully")
+                  }
+                  return
+                case _ => println("Not a valid option, enter enter \"s\" for student, \"p\" for professor or \"c\" for course...")
+              }
+            }
+            catch {
+              case e: Exception => println("Not a valid option" + e);
+            }
+          }
+          case 4 =>
+            while(true) {
+              try {
+                print("Type s to delete a STUDENT, p for PROFESSOR or c for COURSE: ")
                 val inputType = readLine()
                 inputType match {
                   case "s" =>
@@ -326,27 +404,17 @@ object TestRepository {
                     println("Course removed succesfully")
                     return
                   case _ => println("Not a valid option, enter enter \"s\" for student, \"p\" for professor or \"c\" for course...")
-                        }
-                      }
+                }
+              }
               catch {
                 case e: Exception => println("Not a valid option" + e);
               }
-          }
-          case 3 => println(s"Case $input1")
-          case 4 => println(s"Case $input1")
+            }
           case _ => println(s"Invalid input")
         }
       } catch {
         case e: Exception => println("Not a valid option " + e);
       }
     }
-
-
-   /* while(input1 != "exit" ){
-
-    }*/
-
-
-
   }
 }
