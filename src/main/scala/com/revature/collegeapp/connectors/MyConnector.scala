@@ -31,9 +31,5 @@ object MyConnector {
 
     }
     return conn
-    //conn.close()
   }
-
-  //getConnection()
-  //println(conn)
 }

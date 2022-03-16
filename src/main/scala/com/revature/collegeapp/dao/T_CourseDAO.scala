@@ -1,4 +1,4 @@
-package com.revature.collegeapp.repositories
+package com.revature.collegeapp.dao
 
 import com.revature.collegeapp.entities.Course
 

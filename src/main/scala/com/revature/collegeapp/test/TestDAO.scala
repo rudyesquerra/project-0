@@ -5,87 +5,27 @@ import java.sql.{SQLException, SQLIntegrityConstraintViolationException}
 import com.revature.collegeapp.connectors.MyConnector
 import com.revature.collegeapp.entities.{Course, Professor, Student}
 import com.revature.collegeapp.enums.{DoWeek, Shift}
-import com.revature.collegeapp.repositories.{CourseDAO, ProfessorDAO, StudentDAO, T_CourseDAO, T_ProfessorDAO, T_StudentDAO}
+import com.revature.collegeapp.dao.{CourseDAO, ProfessorDAO, StudentDAO, T_CourseDAO, T_ProfessorDAO, T_StudentDAO}
 
 import scala.io.StdIn._
+import scala.util.control.Breaks.break
 
-object TestRepository {
+object TestDAO {
   def main(args: Array[String]): Unit = {
     val cr: T_CourseDAO = CourseDAO(MyConnector.getConnection()) //Polymorphism - the idea is to change database for example instead of jdbc to a mongodb nosql
     val sr: T_StudentDAO = StudentDAO(MyConnector.getConnection())
     val pr: T_ProfessorDAO = ProfessorDAO(MyConnector.getConnection())
 
-    //System.out.println("********************COURSES******************************")
-
- /*   val course = new Course("Javascript", "Nelson", DoWeek.Monday, Shift.Night)
-    cr.save(course)
-    println(course)*/
-
-   //cr.remove(cr.getById(4))
-
-
-   /*
-        var course:List[String] = cr.getById(5)
-
-        if (course != null && course(0) != 0) {
-          var newCourse:List[String] = course.updated(2,"Pereyra")
-          cr.update(newCourse)
-        }
-        */
-
-
-    //    cr.getAll().foreach(println)
-    //    println(cr.getAll())
-    //    println(cr.getById(4))
-    //    println(cr.getById(4).length)
-    //    println(cr.getById(4)(1))
-
-    //System.out.println("******************STUDENTS********************************")
-
-/*    val student = new Student("John", "Milton", 54,2)
-    sr.save(student)
-    println(student)*/
-
-//    println(sr.getAll())
-//    println(sr.getById(3))
-//    sr.remove(sr.getById(3))
-
-    /*   val student:List[String] = sr.getById(1)
-
-       if (student != null && student(0) != 0) {
-         var newStudent:List[String] = student.updated(2,"Pereyra")
-         cr.update(newStudent)
-       }*/
-
-    //System.out.println("*********************PROFESSORS*****************************")
-
-  /*  val professor = new Professor("Carlos", "Rios", 6)
-    pr.save(professor)
-    println(professor)*/
-
-//    pr.remove(pr.getById(5))
-
-
-
-
-
-    //    pr.getAll().foreach(println)
-    //    println(pr.getAll())
-    //    println(pr.getById(4))
-    //    println(pr.getById(4).length)
-    //    println(pr.getById(4)(1))
-
-
-    println("Welcome to the college app \nWhat do you wish to do? Enter 1 to CREATE, 2 to READ, 3 to UPDATE, 4 to DELETE")
+    println("********************Welcome to the college app********************\n******************************************************************\n******************************************************************")
     while(true) {
       try {
-        print("Enter your option (1,2,3 or 4): ")
+        print("Enter 1 to CREATE, 2 to READ, 3 to UPDATE, 4 to DELETE: ")
         val input1 = readInt()
         input1 match {
           case 1 =>
             while(true) {
               try {
-                print("Type s to create a STUDENT, p for PROFESSOR or c for COURSE: ")
+                print("Type 's' to create a STUDENT, 'p' for PROFESSOR or 'c' for COURSE: ")
                 val inputType = readLine()
                 inputType match {
                   case "s" =>

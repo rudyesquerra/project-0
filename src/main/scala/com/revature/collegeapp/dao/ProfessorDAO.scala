@@ -1,4 +1,4 @@
-package com.revature.collegeapp.repositories
+package com.revature.collegeapp.dao
 import java.sql.{Connection, PreparedStatement, ResultSet, SQLException, SQLIntegrityConstraintViolationException, Statement}
 
 import com.mysql.cj.jdbc.exceptions.{SQLError, SQLExceptionsMapping}
